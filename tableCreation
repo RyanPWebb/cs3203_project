@@ -1,0 +1,3 @@
+CREATE TABLE `engineering_project`.`user` (`u_id` INT(255) NOT NULL AUTO_INCREMENT , `name_first` VARCHAR(20) NOT NULL , `name_last` VARCHAR(20) NOT NULL , `email` VARCHAR(50) NOT NULL , `pass` VARCHAR(25) NOT NULL , PRIMARY KEY (`u_id`)) ENGINE = InnoDB COMMENT = 'User Data';
+CREATE TABLE `engineering_project`.`event` (`e_id` INT(255) NOT NULL AUTO_INCREMENT COMMENT 'Primary ID' , `u_id` INT(255) NOT NULL COMMENT 'User who created event' , `title` VARCHAR(30) NOT NULL , `date` DATE NOT NULL , `time` TIME NOT NULL , `description` VARCHAR(255) NOT NULL , PRIMARY KEY (`e_id`)) ENGINE = InnoDB COMMENT = 'A User Created event';
+ALTER TABLE `event` ADD CONSTRAINT `User_Event` FOREIGN KEY (`u_id`) REFERENCES `user`(`u_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
