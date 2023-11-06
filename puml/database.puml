@@ -1,0 +1,23 @@
+@startuml
+entity User{
+    * u_id: INT <<generated>>
+    ---
+    name_first: VARCHAR(20)
+    name_last: VARCHAR(20)
+    email: VARCHAR(50)
+    password: VARCHAR(60)
+}
+
+entity Event{
+    * e_id: INT <<generated>>
+    ---
+    * u_id: INT
+    title: VARCHAR(30)
+    date: DATE
+    time: TIME
+    description: VARCHAR(255)
+
+}
+
+    User::u_id ||-r-|{ Event::u_id
+@enduml
