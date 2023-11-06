@@ -5,7 +5,7 @@ Task Manager for Software Engineering Project
 
 The following queries can be used to construct a MySQL database with the following format.
 
-![ERD Diagram](https://www.plantuml.com/plantuml/png/5Smz3i8m34VnlQU02yI8Ramz0c9XH4vYqQ9yHFRVGjoUTdfwosyniC9hcSvRIyMpk9RJ2Wox4Ib_mtl3wj5DDFK6QGYfLthykDsV4YCbcw-N-JMqVoI1AXj4QUmaPGP7DWd7JOkqlFSF)
+![ERD Diagram](https://www.plantuml.com/plantuml/png/5ST12W8n30NGg-W56d5sdaBSk9Gq4voHDYt93-BjPTxkdNUJbgkcjzC6pBWHEN_BUyUMDKDTXa4DHKQdnu_j_jHQIMAvNfRNzF5H0NKEgDFCtcXbSENGSkmF)
 
 ### User Table
 ```sql
