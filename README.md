@@ -4,31 +4,9 @@ Task Manager for Software Engineering Project
 ## Creating the Database:
 
 The following queries can be used to construct a MySQL database with the following format.
-```plantuml
-@startuml
-entity User{
-    * u_id: INT <<generated>>
-    ---
-    name_first: VARCHAR(20)
-    name_last: VARCHAR(20)
-    email: VARCHAR(50)
-    password: VARCHAR(60)
-}
 
-entity Event{
-    * e_id: INT <<generated>>
-    ---
-    * u_id: INT
-    title: VARCHAR(30)
-    date: DATE
-    time: TIME
-    description: VARCHAR(255)
+![ERD Diagram](https://www.plantuml.com/plantuml/png/5Smz3i8m34VnlQU02yI8Ramz0c9XH4vYqQ9yHFRVGjoUTdfwosyniC9hcSvRIyMpk9RJ2Wox4Ib_mtl3wj5DDFK6QGYfLthykDsV4YCbcw-N-JMqVoI1AXj4QUmaPGP7DWd7JOkqlFSF)
 
-}
-
-    User::u_id ||-r-|{ Event::u_id
-@enduml
-```
 ### User Table
 ```sql
 CREATE TABLE `engineering_project`.`Users` (
