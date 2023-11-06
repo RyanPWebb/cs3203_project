@@ -1,5 +1,5 @@
 @startuml
-entity User{
+entity Users{
     * u_id: INT <<generated>>
     ---
     name_first: VARCHAR(20)
@@ -8,16 +8,16 @@ entity User{
     password: VARCHAR(60)
 }
 
-entity Event{
+entity Events{
     * e_id: INT <<generated>>
     ---
     * u_id: INT
     title: VARCHAR(30)
-    date: DATE
-    time: TIME
+    e_date: DATE
+    e_time: TIME
     description: VARCHAR(255)
 
 }
 
-    User::u_id ||-r-|{ Event::u_id
+    Users::u_id ||-r-|{ Events::u_id
 @enduml
