@@ -118,7 +118,9 @@
   <div class=<?php echo $gridFormats[2]?>><?php echo $satlist[4]; ?></div>
 
 </div> 
-<button onclick="window.location.href='https://w3docs.com';"> Add New Task </button>
+<button onclick="window.location.href='http://localhost/project/AddNewTask.php';"> Add New Task </button>
+
+<button onclick="window.location.href='http://localhost/project/DeleteTask.php';"> Delete Task </button>
 
 
 </body>
