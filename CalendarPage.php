@@ -1,6 +1,9 @@
 <?php  
   session_start();
-  $name = $_SESSION["name"];
+  $name = $_SESSION["firstName"];
+  $uid = $_SESSION["userID"];
+
+
 	$dayHeaders = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
 	$sunlist = ["English Homework 1",null,null,null,null];
 	$monlist = ["English Quiz 1",null,null,null,null];

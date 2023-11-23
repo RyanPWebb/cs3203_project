@@ -1,7 +1,6 @@
 
 <?php
     session_start();
-    $_SESSION["loggedIn"] = "false";
 
 ?>
 <!DOCTYPE html>
@@ -63,8 +62,8 @@
             if($password == $row["pass"])
             {
                 echo "<br> login successfull";
-                $_SESSION["loggedIn"] = "true";
-                $_SESSION["name"] = $row["name_first"];
+                $_SESSION["userID"] = $row["u_id"];
+                $_SESSION["firstName"] = $row["name_first"];
                 //add redirect to calender management page
                 header("Location: CalendarPage.php");
             }
