@@ -36,9 +36,9 @@
 <?php
 
     $db_server = "localhost";
-    $db_user = "root";
-    $db_password = "";
-    $db_name = "calender_db"; //CHANGE THIS VARIABLE TO YOUR DATABASE'S NAME
+    $db_user = "project";
+    $db_password = "Password123";
+    $db_name = "engineering_project"; //CHANGE THIS VARIABLE TO YOUR DATABASE'S NAME
 
     $connect = "";
 
@@ -61,7 +61,7 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = "INSERT INTO users (name_first, name_last, email, pass) VALUES('$fName', '$lName', '$email', '$password')";
+        $sql = "INSERT INTO user (name_first, name_last, email, pass) VALUES('$fName', '$lName', '$email', '$password')";
         try
         {
             mysqli_query($connect, $sql);

@@ -1,5 +1,9 @@
 
+<?php
+    session_start();
+    $_SESSION["loggedIn"] = "false";
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +30,9 @@
 <?php
 
     $db_server = "localhost";
-    $db_user = "root";
-    $db_password = "";
-    $db_name = "calender_db"; //CHANGE THIS VARIABLE TO YOUR DATABASE'S NAME
+    $db_user = "project";
+    $db_password = "Password123";
+    $db_name = "engineering_project"; //CHANGE THIS VARIABLE TO YOUR DATABASE'S NAME
 
     $connect = "";
 
@@ -49,7 +53,7 @@
         $username = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = "SELECT * FROM users WHERE email = '$username'";
+        $sql = "SELECT * FROM user WHERE email = '$username'";
         $result = mysqli_query($connect, $sql);
 
         if(mysqli_num_rows($result) > 0)
@@ -59,7 +63,10 @@
             if($password == $row["pass"])
             {
                 echo "<br> login successfull";
+                $_SESSION["loggedIn"] = "true";
+                $_SESSION["name"] = $row["name_first"];
                 //add redirect to calender management page
+                header("Location: CalendarPage.php");
             }
         } 
         else
