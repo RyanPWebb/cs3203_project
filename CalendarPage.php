@@ -123,9 +123,11 @@
   <div class=<?php echo $gridFormats[2]?>><?php echo $satlist[4]; ?></div>
 
 </div> 
-<button onclick="window.location.href='http://localhost/project/AddNewTask.php';"> Add New Task </button>
+<a href="AddNewTask.php"><button> Add New Task </button></a>
+<!--<button onclick="window.location.href='AddNewTask.php';"> Add New Task </button> -->
 
-<button onclick="window.location.href='http://localhost/project/DeleteTask.php';"> Delete Task </button>
+<a href="DeleteTask.php"><button> Delete Task </button></a>
+<!--<button onclick="window.location.href='DeleteTask.php';"> Delete Task </button>-->
 
 
 </body>
