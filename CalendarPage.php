@@ -1,4 +1,9 @@
 <?php  
+  session_start();
+  $name = $_SESSION["firstName"];
+  $uid = $_SESSION["userID"];
+
+
 	$dayHeaders = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
 	$sunlist = ["English Homework 1",null,null,null,null];
 	$monlist = ["English Quiz 1",null,null,null,null];
@@ -58,7 +63,7 @@
 </head>
 <body>
 
-<h1>Here is your week at a glance.</h1>
+<h1><?php echo $name ?>, Here is your week at a glance.</h1>
 
 <p>Click an individual task to see more information.</p>
 
