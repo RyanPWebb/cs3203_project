@@ -11,6 +11,9 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Changed "action = index.php" to "login.php" to work with my file setup 
+         I plan on uploading screenshots of how I have my folders and files organized
+         for reference. -->
     <form  action = "login.php" method = "post">
         <h2> Login </h2>
         email:<br>
@@ -27,7 +30,7 @@
 
 
 <?php
-
+    
     $db_server = "localhost";
     $db_user = "project";
     $db_password = "Password123";
