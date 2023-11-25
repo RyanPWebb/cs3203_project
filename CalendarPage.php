@@ -104,6 +104,7 @@ session_start();
 <html>
 <head>
 <style>
+
 .grid-container {
   display: grid;
   gap: 0px 0.3px;
@@ -133,9 +134,11 @@ session_start();
 </head>
 <body>
 
-<h1><?php echo $name ?>, Here is your week at a glance.</h1>
+<h1> <?php echo 'Hello '. $name . ', here is your week at a glance.'?></h1>
 
 <p>Click an individual task to see more information.</p>
+
+
 
 <div class="grid-container">
   <!-- Days of the Week Headers -->
@@ -146,51 +149,41 @@ session_start();
   <div class=<?php echo $gridFormats[0]?>><?php echo $dayHeaders[4]; ?></div>
   <div class=<?php echo $gridFormats[0]?>><?php echo $dayHeaders[5]; ?></div>  
   <div class=<?php echo $gridFormats[0]?>><?php echo $dayHeaders[6]; ?></div>
-
   <!-- Assignment Row 1 -->
-  <div class=<?php echo $gridFormats[1]?>><?php echo $sunlist[0]; ?></div>
-  <div class=<?php echo $gridFormats[1]?>><a href="url"><?php echo $monlist[0]; ?></a></div>
-  <div class=<?php echo $gridFormats[1]?>><?php echo $tuelist[0]; ?></div>
-  <div class=<?php echo $gridFormats[1]?>><?php echo $wedlist[0]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $thulist[0]; ?></div>
-  <div class=<?php echo $gridFormats[1]?>><?php echo $frilist[0]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $satlist[0]; ?></div>
-
+  <div class=<?php echo $sunContents[0]?>><?php if ($sunContents[0]==$gridFormats[1]) {echo $sunlist[0];}?></div>
+  <div class=<?php echo $monContents[0]?>><?php if ($monContents[0]==$gridFormats[1]) {echo $monlist[0];}?></div>
+  <div class=<?php echo $tueContents[0]?>><?php if ($tueContents[0]==$gridFormats[1]) {echo $tuelist[0];}?></div>
+  <div class=<?php echo $wedContents[0]?>><?php if ($wedContents[0]==$gridFormats[1]) {echo $wedlist[0];}?></div>
+  <div class=<?php echo $thuContents[0]?>><?php if ($thuContents[0]==$gridFormats[1]) {echo $thulist[0];}?></div>
+  <div class=<?php echo $friContents[0]?>><?php if ($friContents[0]==$gridFormats[1]) {echo $frilist[0];}?></div>
+  <div class=<?php echo $satContents[0]?>><?php if ($satContents[0]==$gridFormats[1]) {echo $satlist[0];}?></div>
   <!-- Assignment Row 2 -->
-  <div class=<?php echo $gridFormats[2]?>><?php echo $sunlist[1]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $monlist[1]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $tuelist[1]; ?></div>
-  <div class=<?php echo $gridFormats[1]?>><?php echo $wedlist[1]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $thulist[1]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $frilist[1]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $satlist[1]; ?></div>
-  
+  <div class=<?php echo $sunContents[1]?>><?php if ($sunContents[1]==$gridFormats[1]) {echo $sunlist[1];}?></div>
+  <div class=<?php echo $monContents[1]?>><?php if ($monContents[1]==$gridFormats[1]) {echo $monlist[1];}?></div>
+  <div class=<?php echo $tueContents[1]?>><?php if ($tueContents[1]==$gridFormats[1]) {echo $tuelist[1];}?></div>
+  <div class=<?php echo $wedContents[1]?>><?php if ($wedContents[1]==$gridFormats[1]) {echo $wedlist[1];}?></div>
+  <div class=<?php echo $thuContents[1]?>><?php if ($thuContents[1]==$gridFormats[1]) {echo $thulist[1];}?></div>
+  <div class=<?php echo $friContents[1]?>><?php if ($friContents[1]==$gridFormats[1]) {echo $frilist[1];}?></div>
+  <div class=<?php echo $satContents[1]?>><?php if ($satContents[1]==$gridFormats[1]) {echo $satlist[1];}?></div>
   <!-- Assignment Row 3 -->
-  <div class=<?php echo $gridFormats[2]?>><?php echo $sunlist[2]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $monlist[2]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $tuelist[2]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $wedlist[2]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $thulist[2]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $frilist[2]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $satlist[2]; ?></div>
+  <div class=<?php echo $sunContents[2]?>><?php if ($sunContents[2]==$gridFormats[1]) {echo $sunlist[2];}?></div>
+  <div class=<?php echo $monContents[2]?>><?php if ($monContents[2]==$gridFormats[1]) {echo $monlist[2];}?></div>
+  <div class=<?php echo $tueContents[2]?>><?php if ($tueContents[2]==$gridFormats[1]) {echo $tuelist[2];}?></div>
+  <div class=<?php echo $wedContents[2]?>><?php if ($wedContents[2]==$gridFormats[1]) {echo $wedlist[2];}?></div>
+  <div class=<?php echo $thuContents[2]?>><?php if ($thuContents[2]==$gridFormats[1]) {echo $thulist[2];}?></div>
+  <div class=<?php echo $friContents[2]?>><?php if ($friContents[2]==$gridFormats[1]) {echo $frilist[2];}?></div>
+  <div class=<?php echo $satContents[2]?>><?php if ($satContents[2]==$gridFormats[1]) {echo $satlist[2];}?></div>
   <!-- Assignment Row 4 -->
+  <div class=<?php echo $sunContents[3]?>><?php if ($sunContents[3]==$gridFormats[1]) {echo $sunlist[3];}?></div>
+  <div class=<?php echo $monContents[3]?>><?php if ($monContents[3]==$gridFormats[1]) {echo $monlist[3];}?></div>
+  <div class=<?php echo $tueContents[3]?>><?php if ($tueContents[3]==$gridFormats[1]) {echo $tuelist[3];}?></div>
+  <div class=<?php echo $wedContents[3]?>><?php if ($wedContents[3]==$gridFormats[1]) {echo $wedlist[3];}?></div>
+  <div class=<?php echo $thuContents[3]?>><?php if ($thuContents[3]==$gridFormats[1]) {echo $thulist[3];}?></div>
+  <div class=<?php echo $friContents[3]?>><?php if ($friContents[3]==$gridFormats[1]) {echo $frilist[3];}?></div>
+  <div class=<?php echo $satContents[3]?>><?php if ($satContents[3]==$gridFormats[1]) {echo $satlist[3];}?></div>
 
-  <div class=<?php echo $gridFormats[2]?>><?php echo $sunlist[3]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $monlist[3]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $tuelist[3]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $wedlist[3]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $thulist[3]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $frilist[3]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $satlist[3]; ?></div>
 
-  <!-- Assignment Row 5 -->
-  <div class=<?php echo $gridFormats[2]?>><?php echo $sunlist[4]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $monlist[4]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $tuelist[4]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $wedlist[4]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $thulist[4]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $frilist[4]; ?></div>
-  <div class=<?php echo $gridFormats[2]?>><?php echo $satlist[4]; ?></div>
+
 
 </div> 
 <button onclick="window.location.href='https://w3docs.com';"> Add New Task </button>
