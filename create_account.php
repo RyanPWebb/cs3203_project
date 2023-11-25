@@ -1,9 +1,3 @@
-
-
-<?php
-    //include(database.php);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +55,7 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = "INSERT INTO user (name_first, name_last, email, pass) VALUES('$fName', '$lName', '$email', '$password')";
+        $sql = "INSERT INTO Users (name_first, name_last, email, pass) VALUES('$fName', '$lName', '$email', '$password')";
         try
         {
             mysqli_query($connect, $sql);

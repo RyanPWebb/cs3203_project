@@ -52,7 +52,7 @@
         $username = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = "SELECT * FROM user WHERE email = '$username'";
+        $sql = "SELECT * FROM Users WHERE email = '$username'";
         $result = mysqli_query($connect, $sql);
 
         if(mysqli_num_rows($result) > 0)
