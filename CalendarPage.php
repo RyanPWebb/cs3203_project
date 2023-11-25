@@ -1,34 +1,104 @@
 <?php  
-  session_start();
-  $name = $_SESSION["firstName"];
-  $uid = $_SESSION["userID"];
+session_start();
 
-
+  //Arrays that will hold calendar container information
 	$dayHeaders = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
-	$sunlist = ["English Homework 1",null,null,null,null];
-	$monlist = ["English Quiz 1",null,null,null,null];
-	$tuelist = ["Bio Homework 1",null,null,null,null];
-	$wedlist = ["Biology Quiz","English Homework 2 ",null,null,null];;
-	$thulist = [null,null,null,null,null];
-	$frilist = ["English Test 1",null,null,null,null];
-	$satlist = [null,null,null,null,null];
+	$sunlist = array();
+	$monlist = array();
+	$tuelist = array();
+	$wedlist = array();
+	$thulist = array();
+	$frilist = array();
+	$satlist = array();
 
-	$sunContents = [True,False,False,False,False];
-	$monContents = [True,False,False,False,False];
-	$tueContents = [True,False,False,False,False];
-	$wedContents = [True,True,False,False,False];
-	$thuContents = [False,False,False,False,False];
-	$friContents = [True,False,False,False,False];
-	$satContents = [True,False,False,False,False];
+  //Formats for the header row, and for empty and full containers
+	$gridFormats = ["grid-header","grid-item","grid-item-empty"]; 
 
-	$gridFull = "grid-item";
-	$gridEmpty = "grid-item-empty";
-	$gridHeader = "grid-header";
-	$gridFormats = [$gridHeader,$gridFull,$gridEmpty];
+  //Arrays managing formatting of columns, with all initially set to empty formatting
+	$sunContents = [$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2]];
+	$monContents = [$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2]];
+	$tueContents = [$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2]];
+	$wedContents = [$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2]];
+	$thuContents = [$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2]];
+	$friContents = [$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2]];
+	$satContents = [$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2],$gridFormats[2]];
 
+  //Variables used to connect to the SQL database
+  $db_server = "localhost";
+  $db_user = "user";
+  $db_password = "password";
+  $database = "engineering_project";
+  $user_ID = $_SESSION["userID"];
 
+  //Opening a connection to the database, with a connection failure error
+  $conn = mysqli_connect($db_server,$db_user,$db_password,$database);
+  if(!$conn){ echo 'Connection error: ' . mysqli_connect_error(); }
 
+  //The first query collects data about all events belonging to the logged-in user
+  $query1 = "SELECT e_id, title, e_date, e_time, description FROM events WHERE u_id = '$user_ID' ORDER BY e_date";
+  $results1 = mysqli_query($conn, $query1);
+  $events = mysqli_fetch_all($results1, MYSQLI_ASSOC);
+
+  //The second query collect the user's first and last name
+  $query2 = "SELECT name_first, name_last FROM users WHERE u_id = '$user_ID' ";
+  $results2 = mysqli_query($conn, $query2);
+  $name = mysqli_fetch_all($results2, MYSQLI_ASSOC);
+  $name = $name[0];
+  $name = $name['name_first'] . " " . $name['name_last'];
+ 
+  //Freeing up the memory and closing the connection to the database
+  mysqli_free_result($results1);
+  mysqli_free_result($results2);
+  mysqli_close($conn);
+    
+  //This loop runs evaluates the dates to find the day of the week they belong to
+  //and places them in the corresponding array.
+  $eventCount = count($events);
+  for ($i=0; $i<$eventCount;$i++)
+  {
+  	$tempArray = $events[$i];
+  	$eventDayOfWeek = date('w',strtotime($tempArray['e_date']));
+  	switch($eventDayOfWeek) 
+  	{
+  		case 0: 
+  		array_push($sunlist, $tempArray['title']);
+  		$sunContents[count($sunlist)-1] = $gridFormats[1];
+  		break;
+
+  		case 1: 
+  		array_push($monlist, $tempArray['title']);
+  		$monContents[count($monlist)-1] = $gridFormats[1];  		
+  		break;
+
+  		case 2: 
+  		array_push($tuelist, $tempArray['title']);
+  		$tueContents[count($tuelist)-1] = $gridFormats[1];
+  		break;
+
+  		case 3: 
+  		array_push($wedlist, $tempArray['title']);
+  		$wedContents[count($wedlist)-1] = $gridFormats[1];
+  		break;
+
+  		case 4: 
+  		array_push($thulist, $tempArray['title']);
+  		$thuContents[count($thulist)] = $gridFormats[1];
+  		break;
+
+  		case 5: 
+  		array_push($frilist, $tempArray['title']);
+  		$friContents[count($frilist)-1] = $gridFormats[1];
+  		break;
+
+  		case 6: 
+  		array_push($satlist, $tempArray['title']);
+   		$satContents[count($satlist)-1] = $gridFormats[1]; 		
+  		break;
+  	}
+  }
 ?>
+
+
 <!-- Weekly View Calendar -->
 <!DOCTYPE html>
 <html>
