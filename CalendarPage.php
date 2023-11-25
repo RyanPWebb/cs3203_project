@@ -1,5 +1,8 @@
+
 <?php  
 session_start();
+$user_ID = $_SESSION["userID"];
+$name = $_SESSION["firstName"];
 
   //Arrays that will hold calendar container information
 	$dayHeaders = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
@@ -25,10 +28,9 @@ session_start();
 
   //Variables used to connect to the SQL database
   $db_server = "localhost";
-  $db_user = "user";
-  $db_password = "password";
+  $db_user = "project";
+  $db_password = "Password123";
   $database = "engineering_project";
-  $user_ID = $_SESSION["userID"];
 
   //Opening a connection to the database, with a connection failure error
   $conn = mysqli_connect($db_server,$db_user,$db_password,$database);
@@ -98,7 +100,6 @@ session_start();
   }
 ?>
 
-
 <!-- Weekly View Calendar -->
 <!DOCTYPE html>
 <html>
@@ -135,10 +136,7 @@ session_start();
 <body>
 
 <h1> <?php echo 'Hello '. $name . ', here is your week at a glance.'?></h1>
-
 <p>Click an individual task to see more information.</p>
-
-
 
 <div class="grid-container">
   <!-- Days of the Week Headers -->
@@ -181,13 +179,14 @@ session_start();
   <div class=<?php echo $thuContents[3]?>><?php if ($thuContents[3]==$gridFormats[1]) {echo $thulist[3];}?></div>
   <div class=<?php echo $friContents[3]?>><?php if ($friContents[3]==$gridFormats[1]) {echo $frilist[3];}?></div>
   <div class=<?php echo $satContents[3]?>><?php if ($satContents[3]==$gridFormats[1]) {echo $satlist[3];}?></div>
-
-
-
-
 </div> 
-<button onclick="window.location.href='https://w3docs.com';"> Add New Task </button>
 
+<!-- Buttons to add or delete tasks from the calendar -->
+<a href="AddNewTask.php"><button> Add New Task </button></a>
+<!--<button onclick="window.location.href='AddNewTask.php';"> Add New Task </button> -->
+
+<a href="DeleteTask.php"><button> Delete Task </button></a>
+<!--<button onclick="window.location.href='DeleteTask.php';"> Delete Task </button>-->
 
 </body>
 </html>
