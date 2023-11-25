@@ -8,19 +8,81 @@
 <body>
     <form action = "DeleteTask.php" method = "post"> 
 
-        <label> What Day to delete event: </label> <br>
+        <label> Day of Event to Delete: </label> <br>
         <input type = "text" name = "dayDel"><br>
-        <label> Delete Event Description: </label> <br>
+        <label> Name of Event to Delete: </label> <br>
         <input type = "text" name = "delEvent"><br>
         <input type =  "submit" value = "Delete Event">
     </form>    
-
+    <button onclick="window.location.href='http://localhost/project/';"> Return to Calendar Page </button>
 </body>
 </html>
 
 <?php
+    session_start();
+    $uid = $_SESSION['userID'];
 
-     $dayDel;
-    echo $delDesc;
+    //Creates a new connection with the server
+    $server = "localhost";
+    $user = "root";
+    $password = "";
+    $dbName = "Project";
+    //Change the above variable to your database name
+    $connect = "";
+
+    try
+    {
+        $connect = mysqli_connect($server, $user, $password, $dbName);
+        //echo "Database connection successful<br>";
+    }
+    catch(mysqli_sql_exception)
+    {
+        echo "Database connection faild<br>";
+    }
+
+    if(isset($_POST["dayDel"]) && isset($_POST["delEvent"]))
+    {
+        $EventName = $_POST["delEvent"];
+        $Day = $_POST["dayDel"];
+
+        //Selects the row with the title, day, User ID
+        $sql1 = "SELECT * FROM EVENTS WHERE title = $EventName AND e_date LIKE $Day AND u_id LIKE $uid";
+        
+        $result = mysqli_query($connect, $sql1);
+        //Double Checking that the row exists and adds parameter before deletion for good measure.
+        if(mysqli_num_rows($result) > 0)
+        {
+            echo "Row Found <br>";
+            $title = $EventName;
+            $day = $Day;
+            $row = mysqli_fetch_assoc($result);
+            $desc = $row["description"];
+        }
+        else
+        {
+            echo "Could not find an event with name $EventName and day $Day";
+        }
+
+        //Deletes the row from the table 
+        $sql2 = "DELETE ";
+        try
+        {
+            mysqli_query($connect, $sql2);
+            echo "Event $EventName Deleted";
+
+            //Add Redirection to 
+        }
+        catch (mysqli_sql_exception $ex)
+        {
+            echo "<br> Unable to Delete $EventName: <br> '$ex'<br>";
+        }
+    }
+    else
+    {
+        echo "<br><br>You must fill out all blanks<br>";
+    }
+
+
+    mysqli_close($connection);
 
 ?>
