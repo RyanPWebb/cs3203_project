@@ -1,7 +1,5 @@
-
-
 <?php
-    //include(database.php);
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +12,8 @@
 <body>
     <form  action = "create_account.php" method = "post">
         <h2> Create Account </h2>
+        <p>Please enter the information below to create an account </p>
+        <br>
         First name:<br>
         <input type = "text" name = "firstname"><br>
         Last name:<br>
@@ -22,16 +22,17 @@
         <input type = "text" name = "email"><br>
         password:<br>
         <input type = "password" name = "password"><br>
-        <input type = "submit" name = "submit" value = "create">
-        
-
+        <br>
+        <input type = "submit" name = "submit" value = "CREATE">    
     </form>
+    <br>
     <a href = "login.php">
-        <button> return to login </button>
+        <button> RETURN TO LOGIN </button>
+        <br>
+        <br>
     </a>
 </body>
 </html>
-
 
 <?php
 
@@ -52,31 +53,38 @@
     {
         echo "could not connect to database";
     }
-
-    if(isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["email"]) && isset($_POST["password"]))
+    $blank = "";
+    if (isset($_POST["firstname"]) && isset($_POST["lastname"]) && isset($_POST["email"]) && isset($_POST["password"]))
     {
-
-        $fName = $_POST["firstname"];
-        $lName = $_POST["lastname"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-
-        $sql = "INSERT INTO user (name_first, name_last, email, pass) VALUES('$fName', '$lName', '$email', '$password')";
-        try
+        if ($_POST["firstname"]==$blank || $_POST["lastname"]==$blank || $_POST["email"]==$blank || $_POST["password"]==$blank)
         {
-            mysqli_query($connect, $sql);
-            echo " <br> user is registered <br> ";
+            echo "You have left an entry blank. Please enter information in all fields to create an account";
         }
-        catch(mysqli_sql_exception)
+        else 
         {
-            echo "could not create user";
+            $fName = $_POST["firstname"];
+            $lName = $_POST["lastname"];
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+
+            $sql = "INSERT INTO users (name_first, name_last, email, pass) VALUES('$fName', '$lName', '$email', '$password')";
+            try
+            {
+                mysqli_query($connect, $sql);
+                echo "New user account has been registered. <br> ";
+                $newUserQuery = "SELECT * FROM users WHERE email = '$email'";
+                $result = mysqli_query($connect, $newUserQuery);
+                $newUserInfo = mysqli_fetch_assoc($result);
+                $_SESSION["userID"] = $newUserInfo["u_id"];
+                $_SESSION["firstName"] = $newUserInfo["name_first"];
+                //add redirect to calender management page
+                header("Location: CalendarPage.php");
+            }
+            catch(mysqli_sql_exception)
+            {
+                echo "could not create user";
+            }
         }
     }  
-    else
-    {
-        echo "you have left an entry blank";
-    } 
-
-
     mysqli_close($connect);
 ?>
