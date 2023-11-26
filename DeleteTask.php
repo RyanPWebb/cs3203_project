@@ -37,7 +37,7 @@
     }
     catch(mysqli_sql_exception)
     {
-        echo "Database connection faild<br>";
+        echo "<br> Database connection faild<br>";
     }
 
     if(isset($_POST["dayDel"]) && isset($_POST["delEvent"]))
@@ -46,13 +46,12 @@
         $Day = $_POST["dayDel"];
 
         //Selects the row with the title, day, User ID
-        $sql1 = "SELECT * FROM EVENTS WHERE title = $EventName AND e_date LIKE $Day AND u_id LIKE $uid";
-        
+        $sql1 = "SELECT * FROM EVENTS WHERE title = '$EventName' AND e_date LIKE '$Day' AND u_id LIKE 1";
         $result = mysqli_query($connect, $sql1);
         //Double Checking that the row exists and adds parameter before deletion for good measure.
         if(mysqli_num_rows($result) > 0)
         {
-            echo "Row Found <br>";
+            echo "<br> Found the event, and has been deleted. <br>";
             $title = $EventName;
             $day = $Day;
             $row = mysqli_fetch_assoc($result);
@@ -60,17 +59,17 @@
         }
         else
         {
-            echo "Could not find an event with name $EventName and day $Day";
+            echo "<br> Could not find an event with name $EventName and day $Day";
         }
 
-        //Deletes the row from the table 
-        $sql2 = "DELETE ";
+        //Query to Delete the row from the table 
+        $sql2 = "DELETE FROM Events WHERE title = '$title' AND e_date LIKE '$day' AND description LIKE '$desc'";
         try
         {
             mysqli_query($connect, $sql2);
-            echo "Event $EventName Deleted";
 
-            //Add Redirection to 
+            //Could add auto redirection to the main page again.
+
         }
         catch (mysqli_sql_exception $ex)
         {
