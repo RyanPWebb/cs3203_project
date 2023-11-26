@@ -136,7 +136,6 @@ $name = $_SESSION["firstName"];
 <body>
 
 <h1> <?php echo 'Hello '. $name . ', here is your week at a glance.'?></h1>
-<p>Click an individual task to see more information.</p>
 
 <div class="grid-container">
   <!-- Days of the Week Headers -->

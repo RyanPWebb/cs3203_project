@@ -1,8 +1,9 @@
 
+
 <?php
     session_start();
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,26 +12,28 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Changed "action = index.php" to "login.php" to work with my file setup 
-         I plan on uploading screenshots of how I have my folders and files organized
-         for reference. -->
     <form  action = "login.php" method = "post">
         <h2> Login </h2>
+        <p>Please enter your email and password to access your account.</p>
         email:<br>
         <input type = "text" name = "email"><br>
         password:<br>
         <input type = "password" name = "password"><br>
-        <input type = "submit" name = "submit" value = "login">
+        <br>
+        <input type = "submit" name = "submit" value = "LOG IN">
+
     </form>
+    <br>
 <a href = "create_account.php">
-        <button> create account </button>
+        <button> CREATE ACCOUNT </button>
+        <br>
+        <br>
 </a>
 </body>
 </html>
 
-
 <?php
-    
+
     $db_server = "localhost";
     $db_user = "project";
     $db_password = "Password123";
@@ -55,7 +58,7 @@
         $username = $_POST["email"];
         $password = $_POST["password"];
 
-        $sql = "SELECT * FROM user WHERE email = '$username'";
+        $sql = "SELECT * FROM users WHERE email = '$username'";
         $result = mysqli_query($connect, $sql);
 
         if(mysqli_num_rows($result) > 0)
@@ -73,16 +76,8 @@
         } 
         else
         {
-            echo "user not found";
+            echo "User not found, please re-enter your information.";
         }
     }
-    else
-    {
-        echo "please enter values for email and password";
-    }
-
-
-
-    //close db connection
     mysqli_close($connect);
 ?>
