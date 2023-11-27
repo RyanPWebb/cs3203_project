@@ -24,7 +24,7 @@
 
     </form>    
     <br>
-    <button onclick="window.location.href='http://localhost/WeeklyCalendar/CalendarPage.php';"> Return to Calendar Page <br></button>
+    <button onclick="window.location.href='CalendarPage.php'"> Return to Calendar Page <br></button>
 </body>
 </html>
 

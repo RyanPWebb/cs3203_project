@@ -16,7 +16,7 @@
         <input type =  "submit" value = "Delete Event">
     </form>  
     <br>  
-    <button onclick="window.location.href='http://localhost/WeeklyCalendar/CalendarPage.php';"> Return to Calendar Page </button>
+    <button onclick="window.location.href='CalendarPage.php';"> Return to Calendar Page </button>
 </body>
 </html>
 
